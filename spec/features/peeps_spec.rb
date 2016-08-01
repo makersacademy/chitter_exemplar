@@ -11,6 +11,12 @@ feature "Peeps" do
     expect(page).to have_content("OMG My cat is sooo cute! #kitty")
   end
 
+  scenario "I can't post empty peeps" do
+    create_peep(nil)
+
+    expect(page).to_not have_content("Stefan")
+  end
+
   scenario "I can see the time when a peep was posted" do
     Timecop.freeze do
       create_peep("OMG My cat is sooo cute! #kitty")
