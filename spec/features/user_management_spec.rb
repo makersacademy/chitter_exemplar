@@ -11,6 +11,12 @@ feature "User management" do
     expect(page).to have_content("Logged in as: sdorunga")
   end
 
+  scenario "I can't sign up if passwords do not match" do
+    sign_up(password_confirmation: "wrongPasswordConfirm")
+
+    expect(page).to have_content("Password does not match the confirmation")
+  end
+
   scenario "I can't sign up with an already taken email address" do
     sign_up
     visit "/"
@@ -51,12 +57,16 @@ feature "User management" do
     expect(page).to have_content("You must be signed in to post peeps")
   end
 
-  def sign_up(email: "stefan@makersacademy.com", username: "sdorunga", name: "Stefan")
+  def sign_up(email: "stefan@makersacademy.com",
+              username: "sdorunga",
+              name: "Stefan",
+              password: "supersecret",
+              password_confirmation: "supersecret")
     visit "/"
     click_link "Sign Up"
     fill_in :email, with: email
-    fill_in :password, with: "supersecret"
-    fill_in :password_confirmation, with: "supersecret"
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: password_confirmation
     fill_in :name, with: name
     fill_in :username, with: username
     click_button "Sign Up"

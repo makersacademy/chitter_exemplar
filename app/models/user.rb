@@ -15,6 +15,7 @@ class User
   has n, :peeps
 
   validates_uniqueness_of :email, :username
+  validates_confirmation_of :password
 
   def password=(password)
     @password = password

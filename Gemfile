@@ -10,6 +10,7 @@ group :test do
   gem "rspec"
   gem "database_cleaner"
   gem "capybara"
+  gem "rake"
   gem "pry"
   gem "timecop"
 end
