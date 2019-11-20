@@ -1,4 +1,4 @@
-feature "Regression tests:" do
+feature "Navigation:" do
   scenario "clicking 'Sign Up' twice takes you to the correct url" do
     visit "/"
     click_link "Sign Up"
